@@ -1,6 +1,7 @@
 import * as express from "express";
 import { AppDataSource } from "./data-source";
 import userRoutes from "./user/routes";
+import authRoutes from "./auth/routes";
 
 AppDataSource.initialize()
   .then(() => {
@@ -16,6 +17,7 @@ const port = 3000;
 app.use(express.json());
 
 app.use("/users", userRoutes);
+app.use("/", authRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

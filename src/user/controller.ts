@@ -8,9 +8,17 @@ export class UserController {
     return this.userRepository.find();
   }
 
-  async one(id: number) {
+  async findOneByID(id: number) {
     const user = await this.userRepository.findOne({
       where: { id },
+    });
+
+    return user;
+  }
+
+  async findOneByEmail(email: string) {
+    const user = await this.userRepository.findOne({
+      where: { email },
     });
 
     return user;
