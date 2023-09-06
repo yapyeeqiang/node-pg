@@ -51,17 +51,9 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, email, age } = req.body;
+  const { email, password } = req.body;
 
   try {
-    if (!name || typeof name !== "string") {
-      res.status(400).json({
-        error: "Please provide a valid name.",
-      });
-
-      return;
-    }
-
     if (
       !email ||
       typeof email !== "string" ||
@@ -74,15 +66,15 @@ router.post("/", async (req, res) => {
       return;
     }
 
-    if (!age || typeof age !== "number") {
+    if (!password || typeof password !== "string") {
       res.status(400).json({
-        error: "Please provide a valid age.",
+        error: "Please provide a valid password.",
       });
 
       return;
     }
 
-    const user = await userController.save({ name, email, age });
+    const user = await userController.save({ email, password });
 
     res.status(201).json({
       message: "Successfully created a new user.",
