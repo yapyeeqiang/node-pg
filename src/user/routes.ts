@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { UserController } from "./controller";
+import { encryptPassword } from "../utils/password";
 
 const router = Router();
 const userController = new UserController();
@@ -74,7 +75,12 @@ router.post("/", async (req, res) => {
       return;
     }
 
-    const user = await userController.save({ email, password });
+    const hashedPassword = await encryptPassword(password);
+
+    const user = await userController.save({
+      email,
+      password: hashedPassword,
+    });
 
     res.status(201).json({
       message: "Successfully created a new user.",
