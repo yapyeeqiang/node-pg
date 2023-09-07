@@ -1,6 +1,7 @@
 import "dotenv/config";
 import * as express from "express";
 import helmet from "helmet";
+import cors from "cors";
 import { AppDataSource } from "./data-source";
 import userRoutes from "./user/routes";
 import authRoutes from "./auth/routes";
@@ -18,6 +19,7 @@ const port = 3000;
 
 app.use(express.json());
 app.use(helmet());
+app.use(cors());
 
 app.use("/users", userRoutes);
 app.use("/", authRoutes);
