@@ -1,3 +1,4 @@
+import "dotenv/config";
 import * as express from "express";
 import { AppDataSource } from "./data-source";
 import userRoutes from "./user/routes";

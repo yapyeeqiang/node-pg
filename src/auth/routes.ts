@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { checkPassword, encryptPassword } from "../utils/password";
 import { UserController } from "../user/controller";
+import { generateToken } from "../utils/jwt";
 
 const router = Router();
 
@@ -50,8 +51,10 @@ router.post("/login", async (req, res) => {
       return;
     }
 
+    const accessToken = generateToken(user);
+
     res.status(200).json({
-      message: "Login success.",
+      accessToken,
     });
   } catch (error) {
     res.status(500).json({
