@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { checkPassword, encryptPassword } from "../utils/password";
+import { checkPassword, encryptPassword } from "../../utils/password";
 import { UserController } from "../user/controller";
-import { generateToken } from "../utils/jwt";
+import { generateToken } from "../../utils/jwt";
 
 const router = Router();
 

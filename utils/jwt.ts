@@ -1,4 +1,4 @@
-import { User } from "../user/entity";
+import { User } from "../src/user/entity";
 import * as jwt from "jsonwebtoken";
 
 export const generateToken = (user: User) => {
